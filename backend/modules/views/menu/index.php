@@ -23,11 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                     'attribute' => 'menu_name',
+                    'format' => 'html',
                     'value' => function($data){
                         if(!$data->menu_parent){
                             return $data->menu_name;
                         }else{
-                            return '   |-- ' . $data->menu_name;
+                            return '   &nbsp;&nbsp;&nbsp;&nbsp;|-- ' . $data->menu_name;
                         }
                     }
             ],
@@ -45,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
             'create_at',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

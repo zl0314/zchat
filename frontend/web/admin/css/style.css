@@ -545,5 +545,7 @@ input[type="text"], input[type="password"] {
     color:#fff;
     text-align: left;
 }
-
+.listorder{
+    width:90px;
+}
 /*--- Responsive Code ---*/
