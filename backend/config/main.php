@@ -17,7 +17,7 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\AdminUser',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
@@ -42,6 +42,12 @@ return [
             'showScriptName' => false,
             'rules' => [
             ],
+        ],
+
+    ],
+    'modules' => [
+        'Rbac' => [
+            'class' => 'backend\modules\Rbac',
         ],
     ],
     'params' => $params,

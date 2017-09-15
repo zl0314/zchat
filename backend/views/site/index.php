@@ -6,7 +6,7 @@ $this->title = 'My Yii Application';
 ?>
     <div class="row">
         <div class="col-md-12">
-            <h2>欢迎回来，<?=Yii::$app->user->identity->username?></h2>
+            <h2>欢迎回来，<?=Yii::$app->user->identity->nickname?></h2>
             <h5>最后登录时间： <?=Yii::$app->user->identity->last_login_time?></h5>
         </div>
     </div>
@@ -60,7 +60,7 @@ $this->title = 'My Yii Application';
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 

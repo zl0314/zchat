@@ -14,15 +14,16 @@ class AppAsset extends AssetBundle
         'css/font-awesome.css',
         'css/custom.css',
         'css/font.css',
-        'js/morris/morris-0.4.3.min.css'
+        'js/morris/morris-0.4.3.min.css',
     ];
     public $js = [
         'js/jquery-1.10.2.js',
         'js/bootstrap.min.js',
         'js/jquery.metisMenu.js',
         'js/morris/raphael-2.1.0.min.js',
-        'js/morris/morris.js',
-        'js/custom.js'
+//        'js/morris/morris.js',
+        'js/custom.js',
+        'js/datepicker/WdatePicker.js'
     ];
     public $depends = [
 //        'yii\web\YiiAsset',

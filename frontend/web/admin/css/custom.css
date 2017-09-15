@@ -373,3 +373,16 @@ line-height: 1.428571429;
 }
 
 
+
+.logoutForm{
+    float:right;
+}
+.logoutForm .logout {
+    color:white;
+    font-size:17px;
+}
+.logoutForm .logout:hover {
+    color:white;
+    font-size:17px;
+    text-decoration: none;
+}
