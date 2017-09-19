@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use backend\widgets\ActiveForm;
 use common\models\Material;
 
 /* @var $this yii\web\View */
@@ -18,10 +18,10 @@ use common\models\Material;
 
     <?= $form->field($model, 'pic')->textInput() ?>
 
-    <?= $form->field($model, 'intro')->textarea() ?>
+    <?= $form->field($model, 'intro')->textarea()->widget('common\widgets\ueditor\UEditor') ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? '添加' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= $form->defaultButtons() ?>
     </div>
 
     <?php ActiveForm::end(); ?>

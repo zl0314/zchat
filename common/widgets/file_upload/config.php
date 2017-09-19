@@ -15,7 +15,7 @@ return [
     "imageCompressBorder"=> 1600, /* 图片压缩最长边限制 */
     "imageInsertAlign"=> "none", /* 插入的图片浮动方式 */
     "imageUrlPrefix"=> "", /* 图片访问路径前缀 */
-    "imagePathFormat"=> "/image/{yyyy}/{mm}/{dd}/{date}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+    "imagePathFormat"=> "/uploads/{yyyy}/{mm}/{dd}/{date}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
     "uploadFilePath" => str_replace('backend', 'frontend', $_SERVER['DOCUMENT_ROOT']), /* 文件保存绝对路径   */
 
     /* {filename} 会替换成原文件名,配置这项需要注意中文乱码问题 */

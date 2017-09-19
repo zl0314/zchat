@@ -28,7 +28,7 @@ class UploadAction extends Action
         $_config = require(__DIR__ . '/config.php');
         //load config file
         $this->config = ArrayHelper::merge($_config, $this->config);
-        $this->config = $_config;
+//        $this->config = $_config;
 
         parent::init();
     }

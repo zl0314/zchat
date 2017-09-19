@@ -59,6 +59,6 @@ class Material extends \yii\db\ActiveRecord
             3 => '图片',
             4 => '语音'
         ];
-        
     }
+
 }

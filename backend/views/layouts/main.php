@@ -9,8 +9,8 @@ use yii\helpers\Url;
 AppAsset::register($this);
 $this->beginPage();
 ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="<?= Yii::$app->charset ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,94 +20,98 @@ $this->beginPage();
 </head>
 <body>
 <?php $this->beginBody()?>
-<div id="wrapper">
-    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="">管理后台</a>
-        </div>
-        <div >
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
 
-<?php
-echo  Html::beginForm(['site/logout'], 'post', ['class' => 'logoutForm']);
-echo  Html::submitButton(
-        'Logout (' . Yii::$app->user->identity->nickname . ')',
-        ['class' => 'btn btn-link logout']
-    );
-echo  Html::endForm();
-?>
-
-        </div>
-    </nav>
-    <!-- /. NAV TOP  -->
-    <nav class="navbar-default navbar-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
-                <li class="text-center">
-                    <img src="/admin/images/find_user.png" class="user-image img-responsive"/>
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+<!--                <li class="layui-nav-item layui-nav-itemed">-->
+<!--                    <a class="" href="javascript:;">所有商品</a>-->
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a href="javascript:;">列表一</a></dd>-->
+<!--                        <dd><a href="javascript:;">列表二</a></dd>-->
+<!--                        <dd><a href="javascript:;">列表三</a></dd>-->
+<!--                        <dd><a href="">超链接</a></dd>-->
+<!--                    </dl>-->
+<!--                </li>-->
+<!--                <li class="layui-nav-item">-->
+<!--                    <a href="javascript:;">解决方案</a>-->
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a href="javascript:;">列表一</a></dd>-->
+<!--                        <dd><a href="javascript:;">列表二</a></dd>-->
+<!--                        <dd><a href="">超链接</a></dd>-->
+<!--                    </dl>-->
+<!--                </li>-->
+                <li class="layui-nav-item">
+                    <a class="<?php if(Yii::$app->controller->id == 'site'):?>active-menu <?php endif;?>"   href="<?=Url::to('/admin')?>">  控制台</a>
                 </li>
 
-
-                <li>
-                    <a class="active-menu"  href="<?=Url::to('/admin')?>"><i class="fa fa-dashboard fa-3x"></i> 控制台</a>
+                <li class="layui-nav-item">
+                    <a class="<?php if(Yii::$app->controller->id == 'menu'):?>active-menu <?php endif;?>"    href="<?=Url::to('/admin/Rbac/menu')?>">  菜单管理</a>
                 </li>
 
-                <li>
-                    <a href="<?=Url::to('/admin/Rbac/menu')?>"><i class="fa fa-dashboard fa-3x"></i> 菜单管理</a>
+                <li class="layui-nav-item">
+                    <a class="<?php if(Yii::$app->controller->id == 'setting'):?>active-menu <?php endif;?>"     href="<?=Url::to('/admin/setting');?>"> 系统设置</a>
                 </li>
 
-                <li>
-                    <a   href="<?=Url::to('/admin/setting');?>"><i class="fa fa-desktop fa-3x"></i>系统设置</a>
+                <li class="layui-nav-item">
+                    <a  class="<?php if(Yii::$app->controller->id == 'material'):?>active-menu <?php endif;?>"    href="<?=Url::to('/admin/material');?>"> 素材管理</a>
                 </li>
-<!--
-                <li>
-                    <a href="#"><i class="fa fa-sitemap fa-3x"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#">Second Level Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Link</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Link</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Link</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Link</a>
-                                </li>
-
-                            </ul>
-
-                        </li>
-                    </ul>
-                </li>
-                -->
-
             </ul>
-
         </div>
-    </nav>
+    </div>
 
-    <!-- /. NAV SIDE  -->
-    <div id="page-wrapper" >
-        <div id="page-inner">
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <?php if(Yii::$app->session->getFlash('alert_msg')):?>
+            <blockquote class="layui-elem-quote ">
+                <?=Yii::$app->session->getFlash('alert_msg')?>
+            </blockquote>
+            <?php endif;?>
             <?=$content?>
         </div>
     </div>
+    <div class="layui-footer">
+
+    </div>
 </div>
+
 <?php $this->endBody();?>
-
 </body>
-
 <?php $this->endPage();?>
+
+<script>
+    layui.use('form', function(){var form = layui.form;});
+</script>

@@ -1,9 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
+use backend\grid\ActionColumn;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\MaterialSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -11,17 +12,16 @@ use yii\helpers\Url;
 $this->title = '素材管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="material-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+<br><br>
+<p>
+        <?= Html::a('添加素材', ['create'], ['class' => 'layui-btn layui-btn-danger']) ?>
+</p>
 
-    <p>
-        <?= Html::a('添加素材', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+
         'columns' => [
             'id',
             'title',
@@ -34,20 +34,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'pic',
             'intro',
             [
-                'class' => 'yii\grid\ActionColumn',
+                'class' => ActionColumn::class,
                 'buttons' => [
                     'articles' => function ($url, $model, $key) {
                         return Html::a('<i class="fa  fa-commenting-o" aria-hidden="true"></i>文章列表 ' , Url::to([
-                            'marc/index',
-                            'MarcSearch[material_id]' => $model->id
+                            'material-article/index',
+                            'material_id' => $model->id
                         ]), [
                             'title' => '文章列表',
-                            'class' => '',
+                            'class' => 'layui-btn layui-btn-small',
                         ]);
                     }
                 ],
-                'template' => '{view} {update} {delete} {articles}',
+                'template' => '{view-layer} {update} {delete} {articles}',
             ],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+<?php Pjax::end(); ?>
+
