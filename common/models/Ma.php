@@ -16,14 +16,14 @@ use Yii;
  * @property string $content
  * @property string $addtime
  */
-class MaterialArticle extends \yii\db\ActiveRecord
+class Ma extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'zchat_material_article';
+        return '{{%material}}';
     }
 
     /**
@@ -32,8 +32,9 @@ class MaterialArticle extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'pic', 'intro', 'content', 'addtime'], 'required'],
-            [['material_id'], 'integer'],
+            [['title', 'addtime'], 'required'],
+            [['type'], 'integer'],
+            [['type'], 'in', 'range' => [1,2,3,4]],
             [['content'], 'string'],
             [['addtime'], 'safe'],
             [['title'], 'string', 'max' => 100],
@@ -49,12 +50,11 @@ class MaterialArticle extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => '文章标题',
+            'title' => '素材标题',
             'keyword' => '回复关键字',
-            'material_id' => '素材类型',
             'pic' => '封面图',
             'intro' => '简短介绍',
-            'content' => '文章内容',
+            'content' => '素材内容',
             'addtime' => '发布时间',
             'status' => '状态'
         ];
@@ -64,6 +64,16 @@ class MaterialArticle extends \yii\db\ActiveRecord
         return [
             '1' => '正常',
             '0' => '关闭'
+        ];
+    }
+
+    //素材类型
+    public static function getMaterialType(){
+        return [
+            1 => '文章素材',
+            2 => '图片素材',
+            3 => '语音素材',
+            4 => '文字素材',
         ];
     }
 }

@@ -18,7 +18,7 @@ class ActionColumn extends \yii\grid\ActionColumn
     public $header = 'Action';
     public $queryParams = [];
 
-    public $width = '30px';
+    public $width = '120';
 
     public $template = '{update} {delete}';
 

@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <br><br>
     <p>
-        <?= Html::a('添加文章', ['create', 'material_id' => $searchModel->material_id], ['class' => 'layui-btn layui-btn-danger']) ?>
+        <?= Html::a('添加素材', ['create', 'type' => Yii::$app->request->get('type')], ['class' => 'layui-btn layui-btn-danger']) ?>
     </p>
 <?php Pjax::begin(); ?>
     <?= GridView::widget([
@@ -25,12 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'keyword',
-            [
-                    'attribute' => 'material_id',
-                    'value' => function($data){
-                        return \common\models\Material::findOne($data->material_id)->title;
-                    }
-            ],
             [
                 'attribute' => 'pic',
                 'format' => 'html',
@@ -42,11 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
              [
                  'attribute' => 'status',
                  'value' => function($data){
-                        return \common\models\MaterialArticle::getArticleStatus()[$data->status];
+                        return \common\models\Ma::getArticleStatus()[$data->status];
                  }
              ],
 
-            ['class' => 'backend\grid\ActionColumn'],
+            [
+                'class' => 'backend\grid\ActionColumn',
+                'template' => '{view-layer}{update}  {delete}'
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

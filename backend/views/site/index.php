@@ -4,12 +4,12 @@
 
 $this->title = 'My Yii Application';
 ?>
-    <div class="row">
-        <div class="col-md-12">
+<link href="/admin/css/bootstrap.css" rel="stylesheet" />
+<link href="/admin/css/font-awesome.css" rel="stylesheet" />
+<blockquote class="layui-elem-quote ">
             <h2>欢迎回来，<?=Yii::$app->user->identity->nickname?></h2>
-            <h5>最后登录时间： <?=Yii::$app->user->identity->last_login_time?></h5>
-        </div>
-    </div>
+<!--            <h5>上次登录时间： --><?//=Yii::$app->user->identity->last_login_time?><!--</h5>-->
+    </blockquote>
 
     <hr>
     <div class="row">

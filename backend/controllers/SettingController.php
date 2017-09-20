@@ -55,8 +55,6 @@ class SettingController extends \yii\web\Controller {
 
             $json_data = serialize($data);
 
-            //保存上传的二维码
-
             //获取DB连接
             $connection  = Yii::$app->db;
             $setting = Setting::findOne($id);

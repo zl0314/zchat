@@ -213,6 +213,10 @@ font-weight: 700;
 .active-menu {
     background-color:#C90000!important;
 }
+.layui-nav-child .active-menu {
+    background-color:#32AA9F!important;
+    margin-top:5px;
+}
 
 .arrow {
     float: right;

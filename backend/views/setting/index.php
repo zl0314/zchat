@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 $this->title = '系统设置';
-use yii\widgets\ActiveForm;
+use backend\widgets\ActiveForm;
 use yii\helpers\Url;
 ?>
 
@@ -27,6 +27,6 @@ use yii\helpers\Url;
 
 
 <br>
-<input type="submit" value="提 交" class="btn btn-primary">
+<input type="submit" value="提 交" class="btn layui-btn">
 <br>
 <?php ActiveForm::end() ?>

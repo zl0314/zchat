@@ -18,7 +18,7 @@ use backend\widgets\ActiveForm;
 
     <?= $form->field($model, 'title') ?>
     <?= $form->field($model, 'keyword') ?>
-    <?php  echo $form->field($model, 'status')->dropDownList(\common\models\MaterialArticle::getArticleStatus()) ?>
+    <?php  echo $form->field($model, 'status')->dropDownList(\common\models\Ma::getArticleStatus()) ?>
     <div class="form-group">
         <?= Html::submitButton('搜索', ['class' => 'layui-btn']) ?>
     </div>

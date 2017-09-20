@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\AdminUser;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -77,6 +78,9 @@ class SiteController extends MainController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $sql = "UPDATE {{%adminuser}} SET last_login_time ='".date('Y-m-d H:i:s')."'";
+            $command = Yii::$app->db->createCommand($sql);
+            $res     = $command->query($sql);
             return $this->goBack();
         } else {
             return $this->render('login', [

@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\MaterialArticle;
+use common\models\Ma;
 
 /**
  * MaterialArticleSearch represents the model behind the search form about `common\models\MaterialArticle`.
  */
-class MaterialArticleSearch extends MaterialArticle
+class MaSearch extends Ma
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class MaterialArticleSearch extends MaterialArticle
     public function rules()
     {
         return [
-            [['id', 'material_id', 'status'], 'integer'],
+            [['id', 'type', 'status'], 'integer'],
             [['title', 'keyword', 'pic', 'intro', 'content', 'addtime'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class MaterialArticleSearch extends MaterialArticle
      */
     public function search($params)
     {
-        $query = MaterialArticle::find();
+        $query = Ma::find();
 
         // add conditions that should always apply here
 
@@ -60,7 +60,7 @@ class MaterialArticleSearch extends MaterialArticle
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'material_id' => Yii::$app->request->get('material_id'),
+            'type' => Yii::$app->request->get('type', 1),
             'status' => $this->status,
         ]);
 

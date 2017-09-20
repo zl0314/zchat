@@ -2,17 +2,18 @@
 
 namespace backend\controllers;
 
+use backend\models\AdminUser;
 use Yii;
-use common\models\Material;
-use backend\models\MaterialSearch;
+use common\models\Ma;
+use backend\models\MaSearch;
 use backend\controllers\MainController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MaterialController implements the CRUD actions for Material model.
+ * MaterialArticleController implements the CRUD actions for MaterialArticle model.
  */
-class MaterialController extends MainController
+class MaController extends MainController
 {
     /**
      * @inheritdoc
@@ -30,34 +31,30 @@ class MaterialController extends MainController
     }
 
     /**
-     * Lists all Material models.
+     * Lists all MaterialArticle models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MaterialSearch();
+        $searchModel = new MaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
-
     /**
-     * Creates a new Material model.
+     * Creates a new MaterialArticle model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Material();
-
-        if ($model->load(Yii::$app->request->post()) ) {
-            $model->admin_id = Yii::$app->user->id;
-            $model->save();
-            return $this->redirect(['index']);
+        $model = new Ma();
+        $model->type = Yii::$app->request->get('type');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index', 'type' => $model->type]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -66,7 +63,7 @@ class MaterialController extends MainController
     }
 
     /**
-     * Updates an existing Material model.
+     * Updates an existing MaterialArticle model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -76,7 +73,7 @@ class MaterialController extends MainController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'type' => $model->type]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -85,7 +82,7 @@ class MaterialController extends MainController
     }
 
     /**
-     * Deletes an existing Material model.
+     * Deletes an existing MaterialArticle model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -98,18 +95,28 @@ class MaterialController extends MainController
     }
 
     /**
-     * Finds the Material model based on its primary key value.
+     * Finds the MaterialArticle model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Material the loaded model
+     * @return MaterialArticle the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Material::findOne($id)) !== null) {
+        if (($model = Ma::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionViewLayer(){
+        $this->layout = 'view-layer';
+        $model = $this->findModel(Yii::$app->request->get('id'));
+        $this->renderData = [
+            'model' => $model
+        ];
+        return $this->display();
+    }
+
 }
