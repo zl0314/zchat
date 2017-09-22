@@ -82,10 +82,10 @@ $this->beginPage();
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="<?php if(in_array(Yii::$app->controller->id , ['ma', 'mp','mv','mt'])):?>active-menu <?php endif;?>"  href="javascript:;">素材管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a class="<?php if(Yii::$app->request->get('type') == 1):?>active-menu <?php endif;?>" href="<?=Url::to('/admin/ma?type=1');?>">文章素材</a></dd>
-                        <dd><a class="<?php if(Yii::$app->request->get('type') == 2):?>active-menu <?php endif;?>" href="<?=Url::to('/admin/ma?type=2');?>">图片素材</a></dd>
-                        <dd><a class="<?php if(Yii::$app->request->get('type') == 3):?>active-menu <?php endif;?>" href="<?=Url::to('/admin/ma?type=3');?>">语音素材</a></dd>
-                        <dd><a class="<?php if(Yii::$app->request->get('type') == 4):?>active-menu <?php endif;?>" href="<?=Url::to('/admin/ma?type=4');?>">文字素材</a></dd>
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 1):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 1]);?>">文章素材</a></dd>
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 2):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 2]);?>">图片素材</a></dd>
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 3):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 3]);?>">语音素材</a></dd>
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 4):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 4]);?>">文字素材</a></dd>
                     </dl>
                 </li>
 

@@ -15,10 +15,15 @@ use backend\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
+    <span class="help-inline">多个关键字可以用“,”(英文状态)隔开</span>
     <?= $form->field($model, 'type')->hiddenInput()->label(false)?>
 
     <?php if(Yii::$app->request->get('type') != 4):?>
-        <?= $form->field($model, 'pic')->textInput(['maxlength' => true])->widget('common\widgets\file_upload\FileUpload') ?>
+        <?= $form->field($model, 'pic')->textInput(['maxlength' => true])->widget('common\widgets\file_upload\FileUpload',[
+                'options' => [
+                    'uploadType' => Yii::$app->request->get('type') == 3 ? 'voice' : ''
+                ]
+        ]) ?>
         <?= $form->field($model, 'intro')->textInput(['maxlength' => true]) ?>
     <?php endif;?>
 

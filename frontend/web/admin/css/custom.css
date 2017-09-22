@@ -390,3 +390,10 @@ line-height: 1.428571429;
     font-size:17px;
     text-decoration: none;
 }
+.hide {
+    display: none;
+}
+.help-inline{
+    margin-left:110px;
+    color:#666;
+}

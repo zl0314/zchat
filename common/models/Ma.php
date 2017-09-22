@@ -18,6 +18,11 @@ use Yii;
  */
 class Ma extends \yii\db\ActiveRecord
 {
+    const MATERIAL_SINGLE = 1; //单图文
+    const MATERIAL_MORE = 2;    //多图文
+    const MATERIAL_PIC = 3;     //图片
+    const MATERIAL_VOICE = 4;   //语音
+
     /**
      * @inheritdoc
      */
@@ -52,7 +57,7 @@ class Ma extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => '素材标题',
             'keyword' => '回复关键字',
-            'pic' => '封面图',
+            'pic' => '素材',
             'intro' => '简短介绍',
             'content' => '素材内容',
             'addtime' => '发布时间',
