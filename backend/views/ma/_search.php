@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use backend\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\MaterialArticleSearch */
@@ -16,12 +16,12 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
 
+    <?= $form->field($model, 'id') ?>
     <?= $form->field($model, 'title') ?>
-    <?= $form->field($model, 'material_id')->hiddenInput()->label(false) ?>
     <?= $form->field($model, 'keyword') ?>
-    <?php  echo $form->field($model, 'status')->dropDownList(\common\models\MaterialArticle::getArticleStatus()) ?>
+    <?php  echo $form->field($model, 'status')->dropDownList(\common\models\Ma::getArticleStatus()) ?>
     <div class="form-group">
-        <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('搜索', ['class' => 'layui-btn']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

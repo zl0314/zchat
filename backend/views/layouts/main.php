@@ -40,15 +40,24 @@ $this->beginPage();
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    贤心
+<?php // echo Yii::$app->user->identity->nickname?>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item">
+<?php
+      echo          Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->nickname . ')',
+                ['class' => 'btn layui-btn']
+                )
+                . Html::endForm()
+
+                    ?>
+            </li>
         </ul>
     </div>
 
@@ -56,25 +65,9 @@ $this->beginPage();
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-<!--                <li class="layui-nav-item layui-nav-itemed">-->
-<!--                    <a class="" href="javascript:;">所有商品</a>-->
-<!--                    <dl class="layui-nav-child">-->
-<!--                        <dd><a href="javascript:;">列表一</a></dd>-->
-<!--                        <dd><a href="javascript:;">列表二</a></dd>-->
-<!--                        <dd><a href="javascript:;">列表三</a></dd>-->
-<!--                        <dd><a href="">超链接</a></dd>-->
-<!--                    </dl>-->
-<!--                </li>-->
-<!--                <li class="layui-nav-item">-->
-<!--                    <a href="javascript:;">解决方案</a>-->
-<!--                    <dl class="layui-nav-child">-->
-<!--                        <dd><a href="javascript:;">列表一</a></dd>-->
-<!--                        <dd><a href="javascript:;">列表二</a></dd>-->
-<!--                        <dd><a href="">超链接</a></dd>-->
-<!--                    </dl>-->
-<!--                </li>-->
+
                 <li class="layui-nav-item">
-                    <a class="<?php if(Yii::$app->controller->id == 'site'):?>active-menu <?php endif;?>"   href="<?=Url::to('/admin')?>">  控制台</a>
+                    <a  <?=Yii::$app->controller->id?> class="<?php if(Yii::$app->controller->id == 'site'):?>active-menu <?php endif;?>"   href="<?=Url::to('/admin')?>">  控制台</a>
                 </li>
 
                 <li class="layui-nav-item">
@@ -85,9 +78,21 @@ $this->beginPage();
                     <a class="<?php if(Yii::$app->controller->id == 'setting'):?>active-menu <?php endif;?>"     href="<?=Url::to('/admin/setting');?>"> 系统设置</a>
                 </li>
 
-                <li class="layui-nav-item">
-                    <a  class="<?php if(Yii::$app->controller->id == 'material'):?>active-menu <?php endif;?>"    href="<?=Url::to('/admin/material');?>"> 素材管理</a>
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="<?php if(in_array(Yii::$app->controller->id , ['ma', 'mp','mv','mt'])):?>active-menu <?php endif;?>"  href="javascript:;">素材管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 1):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 1]);?>">文章素材</a></dd>
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 2):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 2]);?>">图片素材</a></dd>
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 3):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 3]);?>">语音素材</a></dd>
+                        <dd><a class="<?php if(Yii::$app->request->get('type') == 4):?>active-menu <?php endif;?>" href="<?=Url::to(['/ma', 'type' => 4]);?>">文字素材</a></dd>
+                    </dl>
                 </li>
+
+                <li class="layui-nav-item">
+                    <a  class="<?php if(Yii::$app->controller->id == 'keyword'):?>active-menu <?php endif;?>"    href="<?=Url::to('/admin/keyword');?>"> 关键字管理</a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -107,11 +112,16 @@ $this->beginPage();
 
     </div>
 </div>
-
 <?php $this->endBody();?>
 </body>
-<?php $this->endPage();?>
 
 <script>
-    layui.use('form', function(){var form = layui.form;});
+
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
 </script>
+<?php $this->endPage();?>
+

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use backend\widgets\ActiveForm;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\MaterialArticle */
@@ -24,13 +24,12 @@ use backend\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6])->widget('\common\widgets\ueditor\UEditor') ?>
 
-    <?= $form->field($model, 'addtime')->textInput()->widget('common\widgets\LayuiDate') ?>
-
+    <?= $form->field($model, 'addtime')->textInput([ 'onclick' => 'WdatePicker({ dateFmt:\'yyyy-MM-dd HH:mm:ss\',readOnly:true})']) ?>
     <?php  echo $form->field($model, 'status')->dropDownList(\common\models\MaterialArticle::getArticleStatus()) ?>
 
-    <?php
-    echo $form->defaultButtons()
-    ?>
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? '新建' : '修改', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
 
     <?php ActiveForm::end(); ?>
 

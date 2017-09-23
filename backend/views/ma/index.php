@@ -1,22 +1,22 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\MaterialArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Material Articles';
+$this->title = '素材文章列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="material-article-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <br><br>
     <p>
-        <?= Html::a('新闻文章', ['create', 'material_id' => $searchModel->material_id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加素材', ['create', 'type' => Yii::$app->request->get('type')], ['class' => 'layui-btn layui-btn-danger']) ?>
     </p>
 <?php Pjax::begin(); ?>
     <?= GridView::widget([
@@ -25,12 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'keyword',
-            [
-                    'attribute' => 'material_id',
-                    'value' => function($data){
-                        return \common\models\Material::findOne($data->material_id)->title;
-                    }
-            ],
             [
                 'attribute' => 'pic',
                 'format' => 'html',
@@ -42,11 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
              [
                  'attribute' => 'status',
                  'value' => function($data){
-                        return \common\models\MaterialArticle::getArticleStatus()[$data->status];
+                        return \common\models\Ma::getArticleStatus()[$data->status];
                  }
              ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'backend\grid\ActionColumn',
+                'template' => '{view-layer}{update}  {delete}'
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>
