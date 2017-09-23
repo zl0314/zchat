@@ -39,6 +39,8 @@ class UploadAction extends Action
         switch ($action) {
                 /* 上传图片 */
             case 'uploadimage':
+            //上传语音
+            case 'uploadvoice':
                 /* 上传文件 */
             case 'uploadfile':
                 $result = $this->ActUpload();
@@ -59,28 +61,38 @@ class UploadAction extends Action
     protected function ActUpload()
     {
         $base64 = "upload";
-        switch (htmlspecialchars(trim($_GET['action']))) {
+//        switch (htmlspecialchars(trim($_GET['action']))) {
+//
+//            case 'uploadimage':
+//                $config = array(
+//                    "pathFormat" => $this->config['imagePathFormat'],
+//                    "maxSize" => $this->config['imageMaxSize'],
+//                    "allowFiles" => $this->config['imageAllowFiles'],
+//                    'test' => 1
+//                );
+//                $fieldName = $this->config['imageFieldName'];
+//            break;
+//
+//            case 'uploadfile':
+//            default:
+//                $config = array(
+//                    "pathFormat" => $this->config['filePathFormat'],
+//                    "maxSize" => $this->config['fileMaxSize'],
+//                    "allowFiles" => $this->config['fileAllowFiles']
+//                );
+//                $fieldName = $this->config['fileFieldName'];
+//            break;
+//        }
 
-            case 'uploadimage':
-                $config = array(
-                    "pathFormat" => $this->config['imagePathFormat'],
-                    "maxSize" => $this->config['imageMaxSize'],
-                    "allowFiles" => $this->config['imageAllowFiles'],
-                    'test' => 1
-                );
-                $fieldName = $this->config['imageFieldName'];
-            break;
+        $action = htmlspecialchars(trim($_GET['action']));
+        $action_type = str_replace('upload','', strtolower($action));
+        $fieldName = $this->config[$action_type . 'FieldName'];
+        $config = array(
+            "pathFormat" => $this->config[$action_type . 'PathFormat'],
+            "maxSize" => $this->config[$action_type  . 'MaxSize'],
+            "allowFiles" => $this->config[$action_type . 'AllowFiles'],
+        );
 
-            case 'uploadfile':
-            default:
-                $config = array(
-                    "pathFormat" => $this->config['filePathFormat'],
-                    "maxSize" => $this->config['fileMaxSize'],
-                    "allowFiles" => $this->config['fileAllowFiles']
-                );
-                $fieldName = $this->config['fileFieldName'];
-            break;
-        }
         $config['uploadFilePath'] = isset($this->config['uploadFilePath'])?$this->config['uploadFilePath']:'';
         /* 生成上传实例对象并完成上传 */
         $up = new Uploader($fieldName, $config, $base64);

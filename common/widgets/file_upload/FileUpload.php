@@ -21,10 +21,18 @@ class FileUpload extends InputWidget
 
     public $value = '';
 
+    public $uploadType = 'image';
+
     public function init()
     {
+        parent::init();
+        $this->config = require(__DIR__ . '/config.php');
+
+        $uploadType = !empty($this->options) && !empty($this->options['uploadType']) ? $this->options['uploadType'] : 'image';
+        $this->uploadType = $uploadType;
+
         $_config = [
-            'serverUrl' => Url::to(['/upload/upload','action'=>'uploadimage']),  //上传服务器地址
+            'serverUrl' => Url::to(['/upload/upload','action'=>'upload' . $uploadType]),  //上传服务器地址
             'fileName' => 'upfile',                                      //提交的图片表单名称
             'domain_url' => '',                                          //图片域名 不填为当前域名
         ];
@@ -37,7 +45,9 @@ class FileUpload extends InputWidget
         if ($this->hasModel()) {
             $inputName = Html::getInputName($this->model, $this->attribute);
             $inputValue = Html::getAttributeValue($this->model, $this->attribute);
+
             return $this->render('index',[
+                'uploadType' => $this->uploadType,
                 'config'=>$this->config,
                 'inputName' => $inputName,
                 'inputValue' => $inputValue,
@@ -45,6 +55,7 @@ class FileUpload extends InputWidget
             ]);
         } else {
             return $this->render('index',[
+                'uploadType' => $this->uploadType,
                 'config'=>$this->config,
                 'inputName' => 'file-upload',
                 'inputValue'=> $this->value

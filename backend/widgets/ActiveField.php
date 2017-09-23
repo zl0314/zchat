@@ -29,7 +29,7 @@ class ActiveField extends \yii\widgets\ActiveField
     public $template = "{label}\n<div class=\"layui-input-block\">{input}\n{error}</div>\n{hint}";
 
     public $errorOptions = [
-        'class' => ''
+        'class' => 'layui-error'
     ];
 
     public function render($content = null)

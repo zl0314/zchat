@@ -1,10 +1,12 @@
 (function($) {
 
 	var settings = {
-		fileType : {
-			img : ['jpg','JPG','jpeg','JPEG','gif','GIF','PNG','png'],
-			zip : ['zip','ZIP','rar','RAR']
-		},
+		// fileType : {
+		// 	img : ['jpg','JPG','jpeg','JPEG','gif','GIF','PNG','png'],
+		// 	voice : ['mp3'],
+		// 	zip : ['zip','ZIP','rar','RAR']
+		// },
+        fileType : ['jpg','JPG','jpeg','JPEG','gif','GIF','PNG','png'],
 		maxSize  : 30*1024*1024,
 		url      : '/default/certificate',
 		sucFn    : function(){console.log('success')}
@@ -19,11 +21,13 @@
 			//验证文件后缀
 			function checkType(){
 				var filepath = that.val(),
-					filetype = that.attr('filetype'),
+					filetype = settings.file_type ? settings.file_type : that.attr('filetype'),
 					thisType = filepath.split('.').pop();
-				if(filepath){
+					// console.log(settings);
+                if(filepath){
 					var pass = false;
-					$.each(settings.fileType[filetype],function(key,val){
+					$.each(settings.fileType,function(key,val){
+						console.log(thisType,val);
 						if(thisType == val){
 							pass = true;
 							return pass;

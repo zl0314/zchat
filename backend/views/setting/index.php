@@ -28,5 +28,5 @@ use yii\helpers\Url;
 
 <br>
 <input type="submit" value="提 交" class="btn layui-btn">
-<br>
+
 <?php ActiveForm::end() ?>
