@@ -67,6 +67,8 @@ class SettingController extends \yii\web\Controller {
                 $command = $connection->createCommand($sql);
                 $res     = $command->query($sql);
             }
+            Yii::$app->cache->set('system_setting', $data);
+            
             if($res){
                 $this->redirect(Url::to('/admin/setting'));
             }

@@ -40,7 +40,7 @@ $this->beginPage();
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-<!--                    --><?//=Yii::$app->user->identity->nickname?>
+<?php // echo Yii::$app->user->identity->nickname?>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
