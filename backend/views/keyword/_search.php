@@ -22,7 +22,7 @@ use backend\widgets\ActiveForm;
 
     <?= $form->field($model, 'type')->dropDownList(\common\models\Ma::getMaterialType()) ?>
 
-    <?= $form->defaultButtons() ?>
+    <?= $form->searchButton() ?>
 
     <?php ActiveForm::end(); ?>
 

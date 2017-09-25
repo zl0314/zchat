@@ -24,4 +24,8 @@ class DataColumn extends \yii\grid\DataColumn
         }
         $this->contentOptions = ['style' => 'word-wrap: break-word; word-break: break-all;'];
     }
+
+    public function asNhtml($value){
+        return $value;
+    }
 }

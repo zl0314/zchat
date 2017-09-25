@@ -25,11 +25,20 @@ class ActiveForm extends \yii\widgets\ActiveForm
     public function defaultButtons(array $options = [])
     {
         echo '<div class="layui-form-item">
-                              <div class="layui-input-block">
-                                    <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">' . Yii::t('app', 'Save') . '</button>
-                                    <button  type="reset" class="layui-btn layui-btn-primary">' . Yii::t('app', 'Reset') . '</button>
-                                </div>
-                            </div>';
+              <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">' . Yii::t('app', 'Save') . '</button>
+                    <button  type="reset" class="layui-btn layui-btn-primary">' . Yii::t('app', 'Reset') . '</button>
+                </div>
+            </div>';
+    }
+
+    public function searchButton()
+    {
+        echo '<div class="layui-form-item">
+              <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">' . Yii::t('app', 'Search') . '</button>
+                </div>
+            </div>';
     }
 
     public function run()

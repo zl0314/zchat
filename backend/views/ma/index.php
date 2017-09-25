@@ -27,9 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'keyword',
             [
                 'attribute' => 'pic',
-                'format' => 'html',
-                'value' => function ($data){
-                    return '<a href="'.$data->pic.'" target="_blank"><img src="'.$data->pic.'" style="width:100px;"></a>';
+                'format' => [
+                    'html',
+                ],
+                'content' => function ($data){
+                    if($data->type == 3 ){
+                        $html = '<audio controls="controls" src="'.$data->pic.'"><source src="'.$data->pic.'"></audio>';
+                        return $html;
+                    }else{
+                        return '<img src="'.$data->pic.'" style="width:100px;">';
+                    }
                 }
             ],
              'addtime',

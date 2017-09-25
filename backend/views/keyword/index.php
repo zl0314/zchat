@@ -16,9 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <br><br>
-    <p>
-        <?= Html::a('添加关键字', ['create'], ['class' => 'layui-btn layui-btn-danger']) ?>
-    </p>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -33,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'content',
                 'format' => 'html',
-                'label' => '回复标题',
+                'label' => '回复内容（点击查看原文）',
                 'value' => function ($data){
                     $sql = 'SELECT title FROM {{%'.$data->target_table . '}} WHERE id=:id';
                     $command = Yii::$app->db->createCommand($sql);
@@ -44,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'backend\grid\ActionColumn',
-                'template' => '{update}'
+                'template' => '{delete}'
             ],
         ],
     ]); ?>

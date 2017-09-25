@@ -24,7 +24,7 @@ use backend\widgets\ActiveForm;
                     'uploadType' => Yii::$app->request->get('type') == 3 ? 'voice' : ''
                 ]
         ]) ?>
-        <?= $form->field($model, 'intro')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'intro')->textarea(['maxlength' => true]) ?>
     <?php endif;?>
 
     <?php if(Yii::$app->request->get('type') == 1):?>
